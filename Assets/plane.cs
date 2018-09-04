@@ -15,7 +15,7 @@ public class plane : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		x-=speed/100.0f;
-		position = new Vector3(x, -18, 23);
+		position = new Vector3(x, gameObject.transform.position.y,  gameObject.transform.position.z);
 		gameObject.transform.position = position;
 	}
 }
