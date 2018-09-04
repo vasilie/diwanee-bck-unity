@@ -18,6 +18,7 @@ public class rend : MonoBehaviour {
 				if (color.a>0){
 					obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 					obj.transform.position = new Vector3(-x, Mathf.Ceil(color.a),y);
+					obj.AddComponent<Rigidbody>();
 					obj.GetComponent<Renderer>().material.color = color;
 				}
 
