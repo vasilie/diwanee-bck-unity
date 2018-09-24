@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23429722443836128}
   - component: {fileID: 114284904721226306}
   - component: {fileID: 54121854948789292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerUp-fireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1835940247836118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.437346, y: 13.8, z: 24.6}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: -38, y: 5, z: 36.3}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ed01ce642c56e43c0b407e622ecb3f6d, type: 2}
+  - {fileID: 2100000, guid: d6d0f567a8b2e4974b525fc27cd3dddc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

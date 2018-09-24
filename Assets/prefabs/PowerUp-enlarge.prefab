@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23755301979889352}
   - component: {fileID: 114814402606556906}
   - component: {fileID: 54759714011714210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerUp-enlarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452053628683942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.100002, y: 3.4, z: 63.9}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: -34.4, y: 5, z: 57.600002}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 90a62a9329221401484774dd18fdca32, type: 2}
+  - {fileID: 2100000, guid: 45bd6fea025c94eb39908115de842256, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

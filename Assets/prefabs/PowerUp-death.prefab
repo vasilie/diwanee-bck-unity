@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23522759713476808}
   - component: {fileID: 114577489064769520}
   - component: {fileID: 54092373172745080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerUp-death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954892838860120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.100002, y: 33.81, z: 63.9}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: -42.9, y: 5, z: 41.2}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 30a26bc70e8224368b6a6acefafa929b, type: 2}
+  - {fileID: 2100000, guid: f3e81322f71e5443694d3eeb9a4bd739, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

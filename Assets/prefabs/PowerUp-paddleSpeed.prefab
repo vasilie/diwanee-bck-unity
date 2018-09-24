@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23809458808679398}
   - component: {fileID: 114611020019458790}
   - component: {fileID: 54833066216627302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerUp-paddleSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1083151291350782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.100002, y: 19.88, z: 63.9}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: -67.700005, y: 5, z: 55.100002}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5d5c59eeefc964f8b89f683532d4a8da, type: 2}
+  - {fileID: 2100000, guid: 3ab70c993f2804312999d1865c4ddea4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

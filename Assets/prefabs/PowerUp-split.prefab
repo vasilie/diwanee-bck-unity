@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23827499006595292}
   - component: {fileID: 114735954504994134}
   - component: {fileID: 54336083430556078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerUp-split
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658007564226578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.100002, y: 29.17, z: 63.9}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: -59.7, y: 5, z: 31.2}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0e84e90fe1bdf4da396139006a8bf050, type: 2}
+  - {fileID: 2100000, guid: 9a30875dba7aa4a2c9b1f1e3b1a100a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

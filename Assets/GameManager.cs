@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public GameObject[] powerUpPrefabs;
     public bool isStarted;
@@ -19,12 +20,16 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         player = GetComponent<AudioSource>();
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
-        } else if (instance != this){
+        }
+        else if (instance != this)
+        {
             Destroy(gameObject);
         }
         lettersLeft = letterHolder.transform.childCount;
@@ -32,20 +37,33 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void DestroyLetter(){
+    public void DestroyLetter()
+    {
         lettersLeft--;
         player.clip = sounds[0];
         player.Play();
     }
-    public void Setup(){
-        
+    public void Setup()
+    {
+
     }
+
+    public void ReloadLevel()
+    {
+        if (gameOver){
+            Application.LoadLevel(Application.loadedLevel);
+        }
+      
+    }
+
 
 	// Update is called once per frame
 	void Update () {
         if (!isStarted && Input.GetKey("space")){
             isStarted = true;
         }
-
+        if (Input.GetKeyDown("space") && gameOver){
+            ReloadLevel();   
+        }
     }
 }
