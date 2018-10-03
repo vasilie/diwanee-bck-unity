@@ -15,11 +15,11 @@ PlayerSettings:
   productName: Diwanee-data-background
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
-  m_SplashScreenAnimation: 1
+  m_SplashScreenAnimation: 0
   m_SplashScreenLogoStyle: 0
   m_SplashScreenDrawMode: 0
   m_SplashScreenBackgroundAnimationZoom: 1
@@ -43,8 +43,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
-  defaultScreenWidthWeb: 900
-  defaultScreenHeightWeb: 562
+  defaultScreenWidthWeb: 1140
+  defaultScreenHeightWeb: 549
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_MTRendering: 1
@@ -128,8 +128,10 @@ PlayerSettings:
     Others: 1
   bundleVersion: 0.1
   preloadedAssets:
-  - {fileID: 2100000, guid: c7e36ca517a755d4d92d3aa5f8e5e23c, type: 2}
-  - {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 8300000, guid: cf021733e80954e49960c573a9e4adc1, type: 3}
+  - {fileID: 8300000, guid: a7b706da3bd1c41dd858ea0e56a0ca41, type: 3}
+  - {fileID: 8300000, guid: c2ae6fd50872c416490e9aa5078cf7a7, type: 3}
+  - {fileID: 8300000, guid: 9e7e1566cdc4642d7a3e45f43e013581, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -570,10 +572,10 @@ PlayerSettings:
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   spritePackerPolicy: 
-  webGLMemorySize: 256
+  webGLMemorySize: 48
   webGLExceptionSupport: 1
   webGLNameFilesAsHashes: 0
-  webGLDataCaching: 0
+  webGLDataCaching: 1
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
@@ -683,7 +685,7 @@ PlayerSettings:
     Collab: 0
     ErrorHub: 0
     Hub: 0
-    UNet: 0
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 2725479d-f0b8-4139-8f3b-b5d5a817d3db

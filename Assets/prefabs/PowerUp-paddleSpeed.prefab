@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54833066216627302}
   m_Layer: 9
   m_Name: PowerUp-paddleSpeed
-  m_TagString: Untagged
+  m_TagString: powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1083151291350782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -67.700005, y: 5, z: 55.100002}
+  m_LocalPosition: {x: -49.41, y: 5.3, z: -42.8}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}

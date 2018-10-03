@@ -4,7 +4,9 @@ using UnityEngine;
 using EZCameraShake;
 
 public class ballz : MonoBehaviour {
-    public float ballSpeed = 100f;
+    public float ballSpeed;
+
+    public float initialBallSpeed = 200f;
 
     public AudioClip[] sounds;
     private AudioSource player;
@@ -12,22 +14,28 @@ public class ballz : MonoBehaviour {
     public GameObject gameOverText;
     public GameObject letterParticles;
     public GameObject ply;
-    public GameObject lifeManager;
+    public Transform ballHolder;
+  
     public GameObject gameManager;
     public int damage;
 
-
-
     private Rigidbody rb;
 
-    private bool ballInPlay;
+    public bool ballInPlay;
 	// Use this for initialization
 	void Awake () {
+
+        ply = GameObject.Find("Player");
+       
         damage = 1;
         rb = GetComponent<Rigidbody>();
         player = GetComponent<AudioSource>();
 	}
-	
+	private void Start()
+	{
+        ballSpeed = initialBallSpeed * 100f;
+        ballHolder = ply.transform.Find("BallHolder");
+	}
 	// Update is called once per frame
 	void Update () {
         if(Input.GetButtonDown("Fire1") && ballInPlay == false ){
@@ -35,15 +43,22 @@ public class ballz : MonoBehaviour {
             ballInPlay = true;
             rb.isKinematic = false;
             rb.AddForce(new Vector3(0, 0, -ballSpeed));
+
         }
-        if (Time.frameCount % 100 == 0){
-            ballSpeed += 1;
+        if (!ballInPlay)
+        {
+            Vector3 newPosition = ply.transform.position;
+            newPosition.z = ply.transform.position.z - 1.4f;
+            transform.position = newPosition;
         }
+       
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
         if (collision.gameObject.name == "Letter"){
-            collision.transform.GetComponent<letter>().health -= damage;
+            if (!GameManager.instance.gameOver){
+                collision.transform.GetComponent<letter>().health -= damage;
+            }
             ContactPoint contact = collision.contacts[0];
             //adaDestroy(collision.gameObject);
             Vector3 particlePos = contact.point;
@@ -65,20 +80,23 @@ public class ballz : MonoBehaviour {
 
         }
         if (collision.gameObject.name == "end" ){
-            CameraShaker.Instance.ShakeOnce(3f, 4f, 0.1f, 1f);
-            lifeManager.GetComponent<LifeManager>().life--;
-            lifeManager.GetComponent<LifeManager>().DrawLife();
-             
-           
-            if (lifeManager.GetComponent<LifeManager>().life < 0){
-                GameManager.instance.gameOver = true;
-                gameOverText.SetActive(true);
+            if (GameManager.instance.currentBalls > 1) {
+                Destroy(gameObject);
+                GameManager.instance.currentBalls--;
+                CameraShaker.Instance.ShakeOnce(3f, 4f, 0.1f, 1f);
+                GameManager.instance.FindBall();
+
+            } else {
+                CameraShaker.Instance.ShakeOnce(3f, 4f, 0.1f, 1f);
+                GameManager.instance.LoseLife();
+                    
+                if (!GameManager.instance.gameOver)
+                {
+                    ResetBall();
+                }
 
             }
-            if (!GameManager.instance.gameOver){
-                ResetBall();
-            }
-            Debug.Log(lifeManager.GetComponent<LifeManager>().life);
+           
         }
 
 	}
@@ -86,11 +104,34 @@ public class ballz : MonoBehaviour {
         ballInPlay = false;
         gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        gameObject.transform.position = new Vector3(0.3f, 0.3f, 0f);
+
         //gameObject.transform.localScale = new Vector3(0.06578948÷f, 0.3571429f, 1.041667f);
-        gameObject.transform.SetParent(ply.transform, false);
+        transform.localScale = new Vector3(3f, 3f, 3f);
+
+        Vector3 newPosition = ply.transform.position;
+        transform.position = newPosition;
+        newPosition.z = ply.transform.position.z -3f;
+        transform.Find("fx_fire_a").gameObject.SetActive(false);
+        //transform.SetParent(ballHolder, false);
+        transform.position = newPosition;
+        ballSpeed = ballSpeed = initialBallSpeed * 100f;
+        //player set fire eff 
+        ply.GetComponent<player>().firebalActive = false;
+        ply.GetComponent<player>().TurnOffPowerup();
+
+        damage = 1;
+
     }
-    void FixedUpdate(){
-        rb.velocity = ballSpeed * (rb.velocity.normalized);
+
+	void FixedUpdate(){
+       
+     
+        if (Time.frameCount % 100 == 1 && ballInPlay)
+        {
+            ballSpeed += 1;
+
+        }
+        //rb.velocity = 56f * ballSpeed * (rb.velocity.normalized) * Time.deltaTime;
+
     }
 }

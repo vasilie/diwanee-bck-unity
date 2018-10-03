@@ -9,8 +9,6 @@ public class letter : MonoBehaviour {
     public GameObject score;
     public GameObject ball;
 
-    private AudioSource player;
-    private AudioClip[] sounds;
 
     public int health;
     private float hasPowerUp;
@@ -30,10 +28,18 @@ public class letter : MonoBehaviour {
         health = 3;
         hasPowerUp = Random.value;
         powerUpType = Random.value;
+      
         pwrUpPrefabs = gameManager.GetComponent<GameManager>().powerUpPrefabs;
 
 
         // Update is called once per frame
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            GameManager.instance.LetterHit();
+        }
     }
 	void Update () {
         if (health <= 0){
@@ -41,7 +47,7 @@ public class letter : MonoBehaviour {
             CameraShaker.Instance.ShakeOnce(0.7f, 4f, 0.1f, 1f);
             score.GetComponent<score>().gameScore+=10;
             GameManager.instance.DestroyLetter();
-            if (hasPowerUp >0){
+            if (hasPowerUp >=0.6){
                 
                 if(powerUpType <0.1){
                     powerUpObj = Instantiate(pwrUpPrefabs[0], transform.position, Quaternion.identity);
@@ -56,19 +62,30 @@ public class letter : MonoBehaviour {
                     powerUpObj.name = "PowerUp-shrink";
                 } else if (powerUpType <0.4){
                     powerUpObj = Instantiate(pwrUpPrefabs[3], transform.position, Quaternion.identity);
-                    powerUpObj.name = "PowerUp-gun";
+                    powerUpObj.name = "PowerUp-split";
                 } else if (powerUpType < 0.5){
 
                     powerUpObj = Instantiate(pwrUpPrefabs[4], transform.position, Quaternion.identity);
-                    powerUpObj.name = "PowerUp-paddleSpeed";
+                    powerUpObj.name = "PowerUp-life";
                 }
                 else if (powerUpType < 0.6){
                     powerUpObj = Instantiate(pwrUpPrefabs[5], transform.position, Quaternion.identity);
                     powerUpObj.name = "PowerUp-ballSpeed";
                 }
+                else if (powerUpType < 0.7)
+                {
+                    powerUpObj = Instantiate(pwrUpPrefabs[6], transform.position, Quaternion.identity);
+                    powerUpObj.name = "PowerUp-death";
+                }
+                else if (powerUpType < 0.8)
+                {
+                    powerUpObj = Instantiate(pwrUpPrefabs[7], transform.position, Quaternion.identity);
+                    powerUpObj.name = "PowerUp-Gun";
+                }
 
             }
         }
+       
         if (health ==1) {
             rend.material.color = Color.red;
         }
@@ -77,6 +94,7 @@ public class letter : MonoBehaviour {
             rend.material.color = new Color(0.2f, 0.2f, 0.2f, 255f);
         }
         if (gameManager.GetComponent<GameManager>().gameOver){
+            Camera.main.orthographic = false;
             GetComponent<MeshCollider>().convex = true;
             rb.isKinematic = false;
             rb.useGravity = true;
