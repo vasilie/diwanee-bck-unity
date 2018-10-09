@@ -27,9 +27,12 @@ public class bullet : MonoBehaviour {
         {
             if (!GameManager.instance.gameOver)
             {
-                collision.transform.GetComponent<letter>().health -= damage;
+                collision.transform.GetComponent<letter>().takeDamage(damage);
+
+
             }
             ContactPoint contact = collision.contacts[0];
+            GameManager.instance.LetterHit();
             //adaDestroy(collision.gameObject);
             Vector3 particlePos = contact.point;
             particlePos.y += 10f;
@@ -38,5 +41,9 @@ public class bullet : MonoBehaviour {
             //player.Play();
 
         }
+    }
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

@@ -9,6 +9,11 @@ public class player : MonoBehaviour {
 
     public string[] paddleList;
     public int currentPaddle = 3;
+    private float[] gun1X;
+    private float[] gun2X;
+
+    public GameObject gun1;
+    public GameObject gun2;
 
     public Transform fireEff;
     [SerializeField]
@@ -40,6 +45,8 @@ public class player : MonoBehaviour {
 
     public GameObject bulletPrefab;
 
+    public GameObject animationHolder;
+    public GameObject shootAnimPrefab;
    
 
     // Use this for initialization
@@ -48,7 +55,8 @@ public class player : MonoBehaviour {
         audPlayer = GetComponent<AudioSource>();
         cam = Camera.main;
         paddleList = new string[] { "Paddle-3", "Paddle-2", "Paddle-1", "PaddleRegular", "Paddle+1", "Paddle+2", "Paddle+3" };
-
+        gun1X = new float[] { 1.58f, 4f, 6.9f, 9f, 11.42f, 14.12f, 16.2f, 19.2f};
+        gun2X = new float[] { -2.46f, -5f, -7.21f, -10.14f, -12.72f, -15.22f, -18.08f, -20.17f };
         ball = GameObject.Find("Ball");
        
         Vector3 toObjectVector = new Vector3();
@@ -84,6 +92,7 @@ public class player : MonoBehaviour {
         //transform.position = playerPos;
         if (Input.GetButtonDown("Fire1") && gunActive){
             gunHolder.Shoot();
+            //Instantiate(shootAnimPrefab, animationHolder.transform, false);
             audPlayer.clip = sounds[0];
             audPlayer.Play();
         }
@@ -104,6 +113,8 @@ public class player : MonoBehaviour {
                 transform.Find(paddleList[currentPaddle]).gameObject.SetActive(false);
                 currentPaddle++;
                 transform.Find(paddleList[currentPaddle]).gameObject.SetActive(true);
+                gun1.transform.localPosition = new Vector3(gun1X[currentPaddle], gun1.transform.localPosition.y, gun1.transform.localPosition.z);
+                gun2.transform.localPosition = new Vector3(gun2X[currentPaddle], gun2.transform.localPosition.y, gun2.transform.localPosition.z);
                 gunHolder = transform.Find("GunHolder").GetComponent<GunHolder>();
             }
 
@@ -116,6 +127,8 @@ public class player : MonoBehaviour {
                 transform.Find(paddleList[currentPaddle]).gameObject.SetActive(false);
                 currentPaddle--;
                 transform.Find(paddleList[currentPaddle]).gameObject.SetActive(true);
+                gun1.transform.localPosition = new Vector3(gun1X[currentPaddle], gun1.transform.localPosition.y, gun1.transform.localPosition.z);
+                gun2.transform.localPosition = new Vector3(gun2X[currentPaddle], gun2.transform.localPosition.y, gun2.transform.localPosition.z);
                 gunHolder = transform.Find("GunHolder").GetComponent<GunHolder>();
             }
 
@@ -127,11 +140,11 @@ public class player : MonoBehaviour {
         {
             Destroy(collision.gameObject);
             ball = GameObject.Find("Ball");
-            Debug.Log(GameManager.instance.currentBalls);
+           
 
             if (true)
             {
-                Debug.Log("passed");
+               
                 ballClone = Instantiate(ballPrefab, ball.transform.position, Quaternion.identity);
                 ballClone.transform.GetComponent<ballz>().ballInPlay = true;
                 ballClone.gameObject.name = "Ball";

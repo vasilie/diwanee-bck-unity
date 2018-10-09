@@ -57,7 +57,7 @@ public class ballz : MonoBehaviour {
 	{
         if (collision.gameObject.name == "Letter"){
             if (!GameManager.instance.gameOver){
-                collision.transform.GetComponent<letter>().health -= damage;
+                collision.transform.GetComponent<letter>().takeDamage(damage);
             }
             ContactPoint contact = collision.contacts[0];
             //adaDestroy(collision.gameObject);
@@ -66,6 +66,7 @@ public class ballz : MonoBehaviour {
             Instantiate(letterParticles, particlePos, Quaternion.identity);
             player.clip = sounds[0];
             player.Play();
+
 
         }
         if (collision.gameObject.name == "Player"){
@@ -130,6 +131,9 @@ public class ballz : MonoBehaviour {
         {
             ballSpeed += 1;
 
+        }
+        if (GameManager.instance.gameOver == true){
+            rb.velocity =  ballSpeed / 2.5f * (rb.velocity.normalized) * Time.deltaTime;
         }
         //rb.velocity = 56f * ballSpeed * (rb.velocity.normalized) * Time.deltaTime;
 

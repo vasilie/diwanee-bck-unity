@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool gameStarted = false;
+
+    public GameObject ply;
 
     public GameObject[] powerUpPrefabs;
     public bool isStarted;
@@ -104,5 +107,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("space") && gameOver){
             ReloadLevel();   
         }
+    }
+    public void StartGame(){
+        gameStarted = true;
+        ball.SetActive(true);
+        ply.SetActive(true);
     }
 }

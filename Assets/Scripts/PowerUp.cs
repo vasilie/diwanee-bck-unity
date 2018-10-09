@@ -17,4 +17,8 @@ public class PowerUp : MonoBehaviour {
         posZ++;
         transform.position = new Vector3(transform.position.x, 3.4f, posZ);
 	}
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
