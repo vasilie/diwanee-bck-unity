@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public bool gameStarted = false;
 
     public GameObject ply;
+    public GameObject clickHere;
+    public GameObject score;
 
     public GameObject[] powerUpPrefabs;
     public bool isStarted;
@@ -30,10 +32,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverText;
     public GameObject gameWinText;
+    public GameObject currentLevelText;
+
+
 	// Use this for initialization
 	private void Awake()
 	{
-        FindBall();
+      
 	}
 	void Start()
     {
@@ -110,7 +115,13 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame(){
         gameStarted = true;
+        //FindBall();
         ball.SetActive(true);
         ply.SetActive(true);
+        lifeManager.SetActive(true);
+        clickHere.SetActive(false);
+        score.SetActive(true);
+        currentLevelText.SetActive(true);
+        Cursor.visible = false;
     }
 }

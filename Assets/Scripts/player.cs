@@ -69,7 +69,7 @@ public class player : MonoBehaviour {
         xPos = playerPos.x;
         paddle = transform.Find("Paddle");
        
-        Cursor.visible = false;
+       
     }
     
     // Update is called once per frame
@@ -82,7 +82,7 @@ public class player : MonoBehaviour {
         finalPosition = cam.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z));
         finalPosition.z = 94.9f;
         finalPosition.y = 2.6f;
-        finalPosition.x = Mathf.Clamp(finalPosition.x, -192.0f, 96.3f);
+        finalPosition.x = Mathf.Clamp(finalPosition.x, -205.4f, 109.76f);
         transform.position = finalPosition;
         //xPos = - Input.mousePosition.x;
         //Debug.Log(xPos);

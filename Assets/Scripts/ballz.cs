@@ -14,8 +14,7 @@ public class ballz : MonoBehaviour {
     public GameObject gameOverText;
     public GameObject letterParticles;
     public GameObject ply;
-    public Transform ballHolder;
-  
+   
     public GameObject gameManager;
     public int damage;
 
@@ -25,7 +24,7 @@ public class ballz : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-        ply = GameObject.Find("Player");
+
        
         damage = 1;
         rb = GetComponent<Rigidbody>();
@@ -34,10 +33,13 @@ public class ballz : MonoBehaviour {
 	private void Start()
 	{
         ballSpeed = initialBallSpeed * 100f;
-        ballHolder = ply.transform.Find("BallHolder");
+       
 	}
 	// Update is called once per frame
 	void Update () {
+        if (ply == null && GameManager.instance.gameStarted){
+            ply = GameObject.Find("Player");
+        }
         if(Input.GetButtonDown("Fire1") && ballInPlay == false ){
             transform.parent = null;
             ballInPlay = true;
@@ -45,7 +47,7 @@ public class ballz : MonoBehaviour {
             rb.AddForce(new Vector3(0, 0, -ballSpeed));
 
         }
-        if (!ballInPlay)
+        if (!ballInPlay && GameManager.instance.gameStarted)
         {
             Vector3 newPosition = ply.transform.position;
             newPosition.z = ply.transform.position.z - 1.4f;

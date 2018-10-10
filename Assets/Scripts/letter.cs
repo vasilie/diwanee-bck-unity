@@ -25,7 +25,7 @@ public class letter : MonoBehaviour {
     {
         rend = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
-        health = 3;
+        //health = 3;
         hasPowerUp = Random.value;
         powerUpType = Random.value;
       
@@ -100,7 +100,7 @@ public class letter : MonoBehaviour {
 
             }
         } else if (health == 1){
-            rend.material.color = Color.red;
+            rend.material.color = new Color(0.8980392f, 0.1254902f, 0.2941177f, 1f);
         } else if (health == 2){
             rend.material.color = new Color(0.3f, 0.3f, 0.3f, 255f);
         }
