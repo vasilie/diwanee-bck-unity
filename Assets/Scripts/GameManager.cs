@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,10 +11,13 @@ public class GameManager : MonoBehaviour
     public GameObject ply;
     public GameObject clickHere;
     public GameObject score;
+    public GameObject announcements;
 
     public GameObject[] powerUpPrefabs;
     public bool isStarted;
     public bool gameOver;
+    public bool gameWin;
+    private int currentLevel = 1;
 
     public AudioClip[] sounds;
     private AudioSource player;
@@ -38,7 +42,8 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	private void Awake()
 	{
-      
+        Cursor.visible = false;
+        gameWin = false;
 	}
 	void Start()
     {
@@ -54,6 +59,7 @@ public class GameManager : MonoBehaviour
         }
         lettersLeft = letterHolder.transform.childCount;
         gameOver = false;
+       
 
     }
 
@@ -62,10 +68,27 @@ public class GameManager : MonoBehaviour
         lettersLeft--;
         player.clip = sounds[3];
         player.Play();
-        if (lettersLeft <= 0){
-            gameOver = true;
-            gameWinText.gameObject.SetActive(true);
+        if (lettersLeft <= 0 && currentLevel == 1){
+            letterHolder.GetComponent<Animator>().SetBool("disableMeshRend", true);
+            FindBall();
+            foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
+            {
+
+                ball.GetComponent<Rigidbody>().isKinematic = true;
+            }
+            announcements.GetComponent<Animator>().SetInteger("level", 2);
+            currentLevelText.GetComponent<Text>().text = "lvl 02";
+        } else if (lettersLeft <=0 && currentLevel == 2 ){
+            gameWinText.SetActive(true);
+            gameWin = true;
+            foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
+            {
+
+                ball.GetComponent<Rigidbody>().isKinematic = true;
+               
+            }
         }
+
     }
     public void Setup()
     {
@@ -83,8 +106,11 @@ public class GameManager : MonoBehaviour
         return ball;
     }
     public void GetLife(){
-        lifeManager.GetComponent<LifeManager>().life++;
-        lifeManager.GetComponent<LifeManager>().DrawLife();
+        if (lifeManager.GetComponent<LifeManager>().life <3){
+            lifeManager.GetComponent<LifeManager>().life++;
+            lifeManager.GetComponent<LifeManager>().DrawLife();
+        }
+
     }
     //public void FindLetters(){
     //    for (int i = 0; i < letterHolder.transform.childCount; i++)
@@ -106,10 +132,11 @@ public class GameManager : MonoBehaviour
     }
 	// Update is called once per frame
 	void Update () {
+        
         if (!isStarted && Input.GetKey("space")){
             isStarted = true;
         }
-        if (Input.GetKeyDown("space") && gameOver){
+        if (Input.GetKeyDown("space") && gameOver || Input.GetKeyDown("space") && gameWin){
             ReloadLevel();   
         }
     }
@@ -123,5 +150,52 @@ public class GameManager : MonoBehaviour
         score.SetActive(true);
         currentLevelText.SetActive(true);
         Cursor.visible = false;
+
+    }
+    public void GameOver(){
+        gameOver = true;
+        letterHolder.GetComponent<Animator>().enabled = false;
+        foreach (GameObject letter in GameObject.FindGameObjectsWithTag("Letter"))
+        {
+            Rigidbody rb = letter.GetComponent<Rigidbody>();
+            letter.GetComponent<MeshCollider>().convex = true;
+
+            rb.isKinematic = false;
+            rb.useGravity = true;
+
+        }
+       
+    }
+    public void StartNewLevel(int level){
+       
+      
+        if (level == 2){
+            foreach (GameObject letter in GameObject.FindGameObjectsWithTag("Letter"))
+            {
+                letter.SetActive(true);
+
+            }
+           
+            letterHolder.GetComponent<Animator>().SetInteger("level", 2);
+            FindBall();
+            foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
+            {
+                ball.GetComponent<ballz>().ResetBall();
+
+            }
+           
+            currentLevel = 2;
+        }
+        lettersLeft = letterHolder.transform.childCount;
+    }
+    public void EnableLetters(){
+        letter[] trs = letterHolder.GetComponentsInChildren<letter>(true);
+        foreach (letter t in trs)
+        {
+            t.health = 3;
+
+            t.GetComponent<Renderer>().material.color = t.GetComponent<letter>().matColor;
+            t.gameObject.SetActive(true);
+        }
     }
 }

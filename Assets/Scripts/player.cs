@@ -193,7 +193,7 @@ public class player : MonoBehaviour {
 
             foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
             {
-                ball.GetComponent<ballz>().ballSpeed = 230;
+                ball.GetComponent<ballz>().ballSpeed = 170 * ball.GetComponent<ballz>().initialBallSpeed ;
 
             }
         }

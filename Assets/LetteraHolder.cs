@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bound : MonoBehaviour {
+public class LetteraHolder : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-		
-	}
-    // Update is called once per frame
-    void Update()
+	  public void EnableLetters()
     {
-
+        GameManager.instance.EnableLetters();
     }
 }
-	
-	

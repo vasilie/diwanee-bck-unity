@@ -57,7 +57,7 @@ public class ballz : MonoBehaviour {
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
-        if (collision.gameObject.name == "Letter"){
+        if (collision.gameObject.tag == "Letter"){
             if (!GameManager.instance.gameOver){
                 collision.transform.GetComponent<letter>().takeDamage(damage);
             }
@@ -117,7 +117,7 @@ public class ballz : MonoBehaviour {
         transform.Find("fx_fire_a").gameObject.SetActive(false);
         //transform.SetParent(ballHolder, false);
         transform.position = newPosition;
-        ballSpeed = ballSpeed = initialBallSpeed * 100f;
+        ballSpeed = initialBallSpeed * 100f;
         //player set fire eff 
         ply.GetComponent<player>().firebalActive = false;
         ply.GetComponent<player>().TurnOffPowerup();
@@ -131,12 +131,12 @@ public class ballz : MonoBehaviour {
      
         if (Time.frameCount % 100 == 1 && ballInPlay)
         {
-            ballSpeed += 1;
+            ballSpeed += 30;
+
 
         }
-        if (GameManager.instance.gameOver == true){
-            rb.velocity =  ballSpeed / 2.5f * (rb.velocity.normalized) * Time.deltaTime;
-        }
+        rb.velocity = ballSpeed / 2.5f * (rb.velocity.normalized) * Time.deltaTime;
+
         //rb.velocity = 56f * ballSpeed * (rb.velocity.normalized) * Time.deltaTime;
 
     }

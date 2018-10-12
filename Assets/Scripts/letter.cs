@@ -9,6 +9,7 @@ public class letter : MonoBehaviour {
     public GameObject score;
     public GameObject ball;
 
+    public Color matColor;
 
     public int health;
     private float hasPowerUp;
@@ -36,18 +37,21 @@ public class letter : MonoBehaviour {
     }
 	void Update () {
        
-        if (gameManager.GetComponent<GameManager>().gameOver){
+        //if (gameManager.GetComponent<GameManager>().gameOver){
             
-            GetComponent<MeshCollider>().convex = true;
-            rb.isKinematic = false;
-            rb.useGravity = true;
-        }
+        //    GetComponent<MeshCollider>().convex = true;
+        //    rb.isKinematic = false;
+        //    rb.useGravity = true;
+        //}
 	}
     public void takeDamage(int damage){
+        if(GameManager.instance.gameOver){
+            return;
+        }
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             CameraShaker.Instance.ShakeOnce(0.7f, 4f, 0.1f, 1f);
             score.GetComponent<score>().gameScore += 10;
             GameManager.instance.DestroyLetter();
@@ -100,7 +104,7 @@ public class letter : MonoBehaviour {
 
             }
         } else if (health == 1){
-            rend.material.color = new Color(0.8980392f, 0.1254902f, 0.2941177f, 1f);
+            rend.material.color = new Color(0.7647059f, 0.1549929f, 0.2726027f, 1f);
         } else if (health == 2){
             rend.material.color = new Color(0.3f, 0.3f, 0.3f, 255f);
         }

@@ -24,7 +24,8 @@ public class LifeManager : MonoBehaviour {
         DrawLife();
         if (life < 0)
         {
-            GameManager.instance.gameOver = true;
+            GameManager.instance.GameOver();
+
             gameOverText = GameManager.instance.gameOverText;
             gameOverText.SetActive(true);
 
@@ -37,7 +38,7 @@ public class LifeManager : MonoBehaviour {
         }
         for (int i = 0; i < life; i++)
         {
-            float xPos = i * (-50f);
+            float xPos = i * (-40f);
             GameObject lifeObj = Instantiate(lifePrefab, new Vector3(xPos, 0f, 0f), Quaternion.identity);
             lifeObj.transform.SetParent(transform, false);
            
