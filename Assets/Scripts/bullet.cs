@@ -22,7 +22,7 @@ public class bullet : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
         if (collision.gameObject.tag == "Letter")
         {
             if (!GameManager.instance.gameOver)

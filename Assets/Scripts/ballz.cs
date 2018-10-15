@@ -96,6 +96,7 @@ public class ballz : MonoBehaviour {
                 if (!GameManager.instance.gameOver)
                 {
                     ResetBall();
+                    GameManager.instance.ResetPlayerBuffs();
                 }
 
             }
@@ -118,14 +119,12 @@ public class ballz : MonoBehaviour {
         //transform.SetParent(ballHolder, false);
         transform.position = newPosition;
         ballSpeed = initialBallSpeed * 100f;
-        //player set fire eff 
-        ply.GetComponent<player>().firebalActive = false;
-        ply.GetComponent<player>().TurnOffPowerup();
+       
 
         damage = 1;
 
     }
-
+   
 	void FixedUpdate(){
        
      

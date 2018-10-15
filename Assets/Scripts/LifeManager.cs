@@ -22,7 +22,7 @@ public class LifeManager : MonoBehaviour {
     public void LoseLife(){
         life--;
         DrawLife();
-        if (life < 0)
+        if (life <= 0)
         {
             GameManager.instance.GameOver();
 

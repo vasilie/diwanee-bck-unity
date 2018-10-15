@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public bool isStarted;
     public bool gameOver;
     public bool gameWin;
-    private int currentLevel = 1;
+    public int currentLevel = 1;
 
     public AudioClip[] sounds;
     private AudioSource player;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	private void Awake()
 	{
-        Cursor.visible = false;
+        Cursor.visible = true;
         gameWin = false;
 	}
 	void Start()
@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         } else if (lettersLeft <=0 && currentLevel == 2 ){
             gameWinText.SetActive(true);
             gameWin = true;
+            Debug.Log(gameWin);
             foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
             {
 
@@ -90,16 +91,9 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void Setup()
-    {
-
-    }
     public void ReloadLevel()
     {
-        if (gameOver){
-            Application.LoadLevel(Application.loadedLevel);
-        }
-      
+        SceneManager.LoadScene(0);
     }
     public GameObject FindBall(){
         ball = GameObject.Find("Ball");
@@ -112,15 +106,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    //public void FindLetters(){
-    //    for (int i = 0; i < letterHolder.transform.childCount; i++)
-    //    {
-    //        letterTransforms[i] = letterHolder.FindChild(i).transform;
-    //    }
-    //}
-    //public void ResetLetters(){
-        
-    //}
     public void LetterHit(){
         player.clip = sounds[2];
         player.Play();
@@ -136,8 +121,12 @@ public class GameManager : MonoBehaviour
         if (!isStarted && Input.GetKey("space")){
             isStarted = true;
         }
-        if (Input.GetKeyDown("space") && gameOver || Input.GetKeyDown("space") && gameWin){
+        if (Input.GetKeyDown("space") && gameOver){
             ReloadLevel();   
+        }
+        if (Input.GetKeyDown("space") && gameWin){
+            ReloadLevel();
+            Debug.Log("game is won matori");
         }
     }
     public void StartGame(){
@@ -192,10 +181,17 @@ public class GameManager : MonoBehaviour
         letter[] trs = letterHolder.GetComponentsInChildren<letter>(true);
         foreach (letter t in trs)
         {
-            t.health = 3;
+            t.health = 4;
+
 
             t.GetComponent<Renderer>().material.color = t.GetComponent<letter>().matColor;
             t.gameObject.SetActive(true);
         }
+    }
+    public void ResetPlayerBuffs()
+    {
+        //player set fire eff 
+        ply.GetComponent<player>().firebalActive = false;
+        ply.GetComponent<player>().TurnOffPowerup();
     }
 }
