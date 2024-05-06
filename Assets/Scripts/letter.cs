@@ -99,16 +99,15 @@ public class letter : MonoBehaviour {
             }
             else if (health == 1)
             {
-                rend.material.color = new Color(0.7647059f, 0.1549929f, 0.2726027f, 1f);
+                rend.material.color = new Color32(145, 43, 188, 1);
             }
             else if (health == 2)
             {
-                rend.material.color = new Color(0.3f, 0.3f, 0.3f, 255f);
+                rend.material.color = new Color32(233, 168, 155, 1);
             }
             else if (health == 3)
             {
-
-                rend.material.color = new Color(0.7215686f, 0.7215686f, 0.7215686f, 255f);
+                rend.material.color = new Color32(216, 117, 199, 1);
             }
             health -= damage;
         }

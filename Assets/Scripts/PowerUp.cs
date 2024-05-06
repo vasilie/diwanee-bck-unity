@@ -14,7 +14,7 @@ public class PowerUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        posZ++;
+        posZ += 30 * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, 3.4f, posZ);
 	}
     void OnBecameInvisible()

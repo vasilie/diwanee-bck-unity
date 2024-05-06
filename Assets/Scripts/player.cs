@@ -80,9 +80,9 @@ public class player : MonoBehaviour {
         mousePosition.z = actualDistance;
         //mousePosition.x = Mathf.Clamp(mousePosition.x, -154.0f, 58f);
         finalPosition = cam.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z));
-        finalPosition.z = 94.9f;
+        finalPosition.z = 125.9f;
         finalPosition.y = 2.6f;
-        finalPosition.x = Mathf.Clamp(finalPosition.x, -205.4f, 109.76f);
+        finalPosition.x = Mathf.Clamp(finalPosition.x, -254.4f, 156.4f);
         transform.position = finalPosition;
         //xPos = - Input.mousePosition.x;
         //Debug.Log(xPos);

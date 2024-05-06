@@ -17,7 +17,7 @@ public class bullet : MonoBehaviour {
   
 	// Update is called once per frame
 	void Update () {
-        position.z-=speed;
+        position.z-=speed * Time.deltaTime * 60f;
         transform.position = position;
 	}
     private void OnCollisionEnter(Collision collision)
